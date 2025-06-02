@@ -149,3 +149,33 @@ void testDeleteStudent()
         std::cerr << "学生信息删除失败！" << std::endl;
     }
 }
+
+void testModifyStudentScore()
+{
+    StudentManager manager;
+
+    std::string id;
+    std::cout << "请输入要修改成绩的学生学号: ";
+    std::cin >> id;
+
+    bool result = manager.modifyGradeByStuId(id); // 删除学生信息
+    if (result)
+    {
+        std::cout << "学生成绩修改成功！" << std::endl;
+    }
+    else
+    {
+        std::cerr << "学生成绩修改失败！" << std::endl;
+    }
+}
+
+void testSortStudents()
+{
+    StudentManager manager;
+
+    manager.sortStudentsByGrade(); // 升序
+    manager.sortStudentsByGrade(false); // 降序
+}
+
+
+

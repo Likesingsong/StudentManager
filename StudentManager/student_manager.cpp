@@ -63,6 +63,29 @@ bool StudentManager::modifyStudent(const std::string& id) {
     }
 }
 
+bool StudentManager::modifyGradeByStuId(const std::string& id)
+{
+    Student* student = findStudentById(id);
+
+    if (student) {
+		double newGrade;
+        std::cout << "请输入新的成绩: (原为" << student->getGrade() << ")" << std::endl;
+        std::cin >> newGrade;
+        student->setGrade(newGrade);
+        if (saveToFile()) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    else {
+        std::cout << "未找到学号为 " << id << " 的学生信息。" << std::endl;
+        return false;
+    }
+    return false;
+}
+
 bool StudentManager::deleteStudent(const std::string& id) {
     for (auto it = students.begin(); it != students.end(); ++it) {
         if (it->getId() == id) {
@@ -123,5 +146,27 @@ bool StudentManager::saveToFile(bool appendMode) const {
             << stu.getGrade() << std::endl;
     }
     fout.close();
+    return true;
+}
+
+bool StudentManager::sortStudentsByGrade(bool ascending)
+{
+    if (students.empty()) {
+        std::cout << "学生列表为空，无法排序。" << std::endl;
+        return false;
+	}
+	// 使用冒泡排序算法对学生按成绩进行排序
+    // 这段代码位于一个双重循环中，实现了冒泡排序算法，用于对students（学生对象的vector）按成绩进行排序。
+    for (size_t i = 0; i < students.size() - 1; ++i) {
+        for (size_t j = 0; j < students.size() - i - 1; ++j) {
+            // ascending是一个布尔变量，表示排序方式：true为升序，false为降序。
+            // students[j].getGrade()获取第j个学生的成绩。          
+            if ((ascending && students[j].getGrade() > students[j + 1].getGrade()) || // 如果是升序（ascending == true），当前一个学生成绩大于后一个学生成绩时，交换两者位置。
+                (!ascending && students[j].getGrade() < students[j + 1].getGrade())) { // 如果是降序（ascending == false），当前一个学生成绩小于后一个学生成绩时，交换两者位置。
+                // std::swap用于交换vector中两个学生对象的位置。
+                std::swap(students[j], students[j + 1]);
+            }
+        }
+	}
     return true;
 }

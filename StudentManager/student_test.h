@@ -14,6 +14,10 @@ void testFindStudentById();
 void testModifyStudent();
 // 测试删除学生信息
 void testDeleteStudent();
+// 测试学生信息排序
+void testSortStudents();
+// 测试根据学号修改学生成绩
+void testModifyStudentScore();
 
 
 

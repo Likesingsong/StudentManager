@@ -23,6 +23,8 @@ public:
 
     bool modifyStudent(const std::string& id);
 
+	bool modifyGradeByStuId(const std::string& id);
+
     bool deleteStudent(const std::string& id);
 
     void printAllStudents() const;
@@ -30,4 +32,6 @@ public:
     bool loadFromFile(const std::string& filename);
 
     bool saveToFile(bool appendMode = false) const;
+
+	bool sortStudentsByGrade(bool ascending = true);
 };
