@@ -1,3 +1,5 @@
+// student_test.cpp
+
 #include "student_test.h"
 #include "student.h"
 #include "student_manager.h"
@@ -176,6 +178,3 @@ void testSortStudents()
     manager.sortStudentsByGrade(); // ÉıĞò
     manager.sortStudentsByGrade(false); // ½µĞò
 }
-
-
-

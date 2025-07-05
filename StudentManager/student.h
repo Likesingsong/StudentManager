@@ -2,7 +2,8 @@
 #include <string>
 #include <iostream>
 
-class Student {
+class Student
+{
 private:
     std::string id_;
     std::string name_;

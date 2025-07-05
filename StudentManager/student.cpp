@@ -1,3 +1,5 @@
+// student.cpp
+
 #include "student.h"
 #include <iostream>
 
@@ -29,7 +31,8 @@ void Student::setClassName(const std::string& className) { className_ = classNam
 double Student::getGrade() const { return grade_; }
 void Student::setGrade(double grade) { grade_ = grade; }
 
-void Student::printInfo() const {
+void Student::printInfo() const
+{
     std::cout << "Ñ§ºÅ: " << id_ << std::endl;
     std::cout << "ÐÕÃû: " << name_ << std::endl;
     std::cout << "ÄêÁä: " << age_ << std::endl;

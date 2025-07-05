@@ -8,7 +8,8 @@
 void printStudentMenu();
 
 // 学生管理类
-class StudentManager {
+class StudentManager
+{
 private:
     std::vector<Student> students;
     std::string data_file = "students.txt";

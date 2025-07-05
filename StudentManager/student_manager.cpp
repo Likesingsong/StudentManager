@@ -65,10 +65,7 @@ bool StudentManager::modifyStudent(const std::string& id)
         student->setGrade(newGrade);
         return true;
     }
-    else
-    {
-        return false;
-    }
+    return false;
 }
 
 bool StudentManager::modifyGradeByStuId(const std::string& id)
@@ -83,10 +80,7 @@ bool StudentManager::modifyGradeByStuId(const std::string& id)
         student->setGrade(newGrade);
         return true;
     }
-    else
-    {
-        return false;
-    }
+	return false;
 }
 
 bool StudentManager::deleteStudent(const std::string& id)

@@ -18,6 +18,3 @@ void testDeleteStudent();
 void testSortStudents();
 // 测试根据学号修改学生成绩
 void testModifyStudentScore();
-
-
-
