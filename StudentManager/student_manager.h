@@ -15,6 +15,8 @@ private:
 public:
     StudentManager();
 
+    ~StudentManager();
+
     void setDataFile(const std::string& filename);
 
     bool addStudent(const Student& stu);
