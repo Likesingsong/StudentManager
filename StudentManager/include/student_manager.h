@@ -7,12 +7,12 @@
 
 void printStudentMenu();
 
-// 学生管理类
+// Student manager class
 class StudentManager
 {
 private:
     std::vector<Student> students;
-    std::string data_file = "students.txt";
+    std::string data_file = "../students.txt";
 public:
     StudentManager();
 

@@ -32,6 +32,19 @@ bld/
 [Oo]ut/
 [Ll]og/
 [Ll]ogs/
+*.log
+*.tmp
+*.tmp_proj
+*.pch
+*.pdb
+*.ipdb
+*.ilk
+*.obj
+*.iobj
+*.tli
+*.tlh
+*.sbr
+*.rsp
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
@@ -364,3 +377,109 @@ FodyWeavers.xsd
 /StudentManager/StudentManager.sln
 /StudentManager/StudentManager.vcxproj
 /StudentManager/StudentManager.vcxproj.filters
+
+# Project-specific .gitignore for StudentManager
+
+# Visual Studio files
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.VC.db
+*.VC.VC.opendb
+
+# Build output
+build/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+*.log
+*.tmp
+*.tmp_proj
+*.pch
+*.pdb
+*.ipdb
+*.ilk
+*.obj
+*.iobj
+*.tli
+*.tlh
+*.sbr
+*.rsp
+
+# Solution and project files (if generated or user-specific)
+StudentManager/StudentManager.sln
+StudentManager/StudentManager.vcxproj
+StudentManager/StudentManager.vcxproj.filters
+
+# Test result files
+[Tt]est[Rr]esult*/
+*.coverage
+*.coveragexml
+*.VisualState.xml
+TestResult.xml
+nunit-*.xml
+*.trx
+
+# IDE and tool settings
+*.ncb
+*.sdf
+*.opensdf
+*.cachefile
+*.aps
+*.opendb
+*.tss
+*.vssscc
+*.vspscc
+*.scc
+*.pidb
+*.svclog
+*.gpState
+*.DotSettings.user
+
+# Backup and temporary files
+*~
+~$*
+*.bak
+*.old
+*.orig
+*.rej
+*.dbmdl
+*.dbproj.schemaview
+*.jfm
+
+# Node modules (if any)
+node_modules/
+
+# Python cache (if any)
+__pycache__/
+*.pyc
+
+# Package manager output
+artifacts/
+*.nupkg
+*.snupkg
+*.nuget.props
+*.nuget.targets
+
+# Publish output
+publish/
+AppPackages/
+BundleArtifacts/
+*.appx
+*.appxbundle
+*.appxupload
+
+# Local history, coverage, and analysis
+.localhistory/
+OpenCover/
+coverage*.json
+coverage*.xml
+coverage*.info
+
+# Ignore data files (if you don't want to track student data)
+students.txt
+
+# Ignore all by default in build output

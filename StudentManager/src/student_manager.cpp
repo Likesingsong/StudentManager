@@ -2,13 +2,13 @@
 
 #include "student_manager.h"
 
-// 构造函数
+// Constructor
 StudentManager::StudentManager()
 {
     loadFromFile(data_file);
 }
 
-// 析构函数
+// Destructor
 StudentManager::~StudentManager()
 {
     saveToFile();
@@ -22,7 +22,7 @@ void StudentManager::setDataFile(const std::string& filename)
 bool StudentManager::addStudent(const Student& stu)
 {
     bool exists = findStudentById(stu.getId()) != nullptr;
-	if (exists) return false; // 如果学号已存在，返回false
+    if (exists) return false; // Return false if student ID already exists
     students.push_back(stu);
     return true;
 }
@@ -31,7 +31,7 @@ Student* StudentManager::findStudentById(const std::string& id)
 {
     for (auto& stu : students)
     {
-		if (stu.getId() == id) return &stu; // 返回指向找到的学生对象的指针
+        if (stu.getId() == id) return &stu; // Return pointer to found student object
         
     }
     return nullptr;
@@ -48,15 +48,15 @@ bool StudentManager::modifyStudent(const std::string& id)
         std::string newClassName;
         int newAge;
         double newGrade;
-        std::cout << "请输入新的姓名: (原为" << student->getName() << ")" << std::endl;
+        std::cout << "Please enter new name: (current: " << student->getName() << ")" << std::endl;
         std::cin >> newName;
-        std::cout << "请输入新的年龄: (原为" << student->getAge() << ")" << std::endl;
+        std::cout << "Please enter new age: (current: " << student->getAge() << ")" << std::endl;
         std::cin >> newAge;
-        std::cout << "请输入新的学校: (原为" << student->getSchool() << ")" << std::endl;
+        std::cout << "Please enter new school: (current: " << student->getSchool() << ")" << std::endl;
         std::cin >> newSchool;
-        std::cout << "请输入新的班级: (原为" << student->getClassName() << ")" << std::endl;
+        std::cout << "Please enter new class: (current: " << student->getClassName() << ")" << std::endl;
         std::cin >> newClassName;
-        std::cout << "请输入新的成绩: (原为" << student->getGrade() << ")" << std::endl;
+        std::cout << "Please enter new grade: (current: " << student->getGrade() << ")" << std::endl;
         std::cin >> newGrade;
         student->setName(newName);
         student->setAge(newAge);
@@ -74,13 +74,13 @@ bool StudentManager::modifyGradeByStuId(const std::string& id)
 
     if (student)
     {
-		double newGrade;
-        std::cout << "请输入新的成绩: (原为" << student->getGrade() << ")" << std::endl;
+        double newGrade;
+        std::cout << "Please enter new grade: (current: " << student->getGrade() << ")" << std::endl;
         std::cin >> newGrade;
         student->setGrade(newGrade);
         return true;
     }
-	return false;
+    return false;
 }
 
 bool StudentManager::deleteStudent(const std::string& id)
@@ -90,7 +90,7 @@ bool StudentManager::deleteStudent(const std::string& id)
         if (it->getId() == id)
         {
             students.erase(it);
-			return true;
+            return true;
         }
     }
     return false;
@@ -140,7 +140,7 @@ bool StudentManager::saveToFile(bool appendMode) const
     {
         return false;
     }
-	std::ofstream fout(data_file, appendMode ? std::ios::app : std::ios::out); // 使用appendMode参数来决定是否追加写入
+    std::ofstream fout(data_file, appendMode ? std::ios::app : std::ios::out); // Use appendMode to decide whether to append
     if (!fout.is_open()) return false;
     for (const auto& stu : students)
     {
@@ -157,22 +157,22 @@ bool StudentManager::saveToFile(bool appendMode) const
 
 bool StudentManager::sortStudentsByGrade(bool ascending)
 {
-	if (students.empty()) return false; // 如果学生列表为空，直接返回false
-	// 使用冒泡排序算法对学生按成绩进行排序
-    // 这段代码位于一个双重循环中，实现了冒泡排序算法，用于对students（学生对象的vector）按成绩进行排序。
+    if (students.empty()) return false; // Return false if student list is empty
+    // Use bubble sort algorithm to sort students by grade
+    // This code is in a double loop, implementing bubble sort to sort the students vector by grade.
     for (size_t i = 0; i < students.size() - 1; ++i)
     {
         for (size_t j = 0; j < students.size() - i - 1; ++j)
         {
-            // ascending是一个布尔变量，表示排序方式：true为升序，false为降序。
-            // students[j].getGrade()获取第j个学生的成绩。
-            if ((ascending && students[j].getGrade() > students[j + 1].getGrade()) ||   // 如果是升序（ascending == true），当前一个学生成绩大于后一个学生成绩时，交换两者位置。
-                (!ascending && students[j].getGrade() < students[j + 1].getGrade()))    // 如果是降序（ascending == false），当前一个学生成绩小于后一个学生成绩时，交换两者位置。
+            // ascending is a boolean variable indicating sort order: true for ascending, false for descending.
+            // students[j].getGrade() gets the grade of the j-th student.
+            if ((ascending && students[j].getGrade() > students[j + 1].getGrade()) ||   // If ascending, swap if current grade is greater than next.
+                (!ascending && students[j].getGrade() < students[j + 1].getGrade()))    // If descending, swap if current grade is less than next.
             {
-                // std::swap用于交换vector中两个学生对象的位置。
+                // std::swap is used to swap two student objects in the vector.
                 std::swap(students[j], students[j + 1]);
             }
         }
-	}
+    }
     return true;
 }
