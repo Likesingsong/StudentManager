@@ -17,7 +17,7 @@ public:
 
     void setDataFile(const std::string& filename);
 
-    int addStudent(const Student& stu);
+    bool addStudent(const Student& stu);
 
     Student* findStudentById(const std::string& id);
 

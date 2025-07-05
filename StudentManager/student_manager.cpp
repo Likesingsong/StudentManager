@@ -9,7 +9,7 @@ void StudentManager::setDataFile(const std::string& filename) {
     data_file = filename;
 }
 
-int StudentManager::addStudent(const Student& stu) {
+bool StudentManager::addStudent(const Student& stu) {
     bool exists = findStudentById(stu.getId()) != nullptr;
     if (exists) {
         std::cout << "学号为 " << stu.getId() << " 的学生已存在，无法添加。" << std::endl;
@@ -102,7 +102,7 @@ bool StudentManager::deleteStudent(const std::string& id) {
 void StudentManager::printAllStudents() const {
     for (const auto& stu : students) {
         stu.printInfo();
-        std::cout << "------------------------" << std::endl;
+        std::cout << "------------------------\n\n";
     }
 }
 

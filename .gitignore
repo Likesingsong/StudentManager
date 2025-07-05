@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/StudentManager/StudentManager.sln
+/StudentManager/StudentManager.vcxproj
+/StudentManager/StudentManager.vcxproj.filters

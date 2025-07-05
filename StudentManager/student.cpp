@@ -36,4 +36,5 @@ void Student::printInfo() const {
     std::cout << "学校: " << school_ << std::endl;
     std::cout << "班级: " << className_ << std::endl;
     std::cout << "成绩: " << grade_ << std::endl;
+    std::cout << "\n\n";
 }
