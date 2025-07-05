@@ -4,10 +4,10 @@
 #include <iostream>
 
 Student::Student()
-    : id_("000000"), name_(""), age_(0), school_("未知学校"), className_("未知班级"), grade_(0.0) {}
+    : id_("000000"), name_(""), age_(0), school_("鏈煡瀛︽牎"), className_("鏈煡鐝骇"), grade_(0.0) {}
 
 Student::Student(const std::string& name, int age)
-    : id_("000000"), name_(name), age_(age), school_("未知学校"), className_("未知班级"), grade_(0.0) {}
+    : id_("000000"), name_(name), age_(age), school_("鏈煡瀛︽牎"), className_("鏈煡鐝骇"), grade_(0.0) {}
 
 Student::Student(const std::string& id, const std::string& name, int age,
                  const std::string& school, const std::string& className, double grade)
@@ -33,11 +33,11 @@ void Student::setGrade(double grade) { grade_ = grade; }
 
 void Student::printInfo() const
 {
-    std::cout << "学号: " << id_ << std::endl;
-    std::cout << "姓名: " << name_ << std::endl;
-    std::cout << "年龄: " << age_ << std::endl;
-    std::cout << "学校: " << school_ << std::endl;
-    std::cout << "班级: " << className_ << std::endl;
-    std::cout << "成绩: " << grade_ << std::endl;
+    std::cout << "瀛﹀彿: " << id_ << std::endl;
+    std::cout << "濮撳悕: " << name_ << std::endl;
+    std::cout << "骞撮緞: " << age_ << std::endl;
+    std::cout << "瀛︽牎: " << school_ << std::endl;
+    std::cout << "鐝骇: " << className_ << std::endl;
+    std::cout << "鎴愮哗: " << grade_ << std::endl;
     std::cout << "\n\n";
 }

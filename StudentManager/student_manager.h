@@ -7,7 +7,7 @@
 
 void printStudentMenu();
 
-// Ñ§Éú¹ÜÀíÀà
+// å­¦ç”Ÿç®¡ç†ç±»
 class StudentManager
 {
 private:

@@ -6,92 +6,92 @@
 
 void testStudent()
 {
-    // ´´½¨Ñ§Éú¶ÔÏó
-    Student student("ÀîËÄ", 20);
+    // åˆ›å»ºå­¦ç”Ÿå¯¹è±¡
+    Student student("æå››", 20);
     student.setId("20250002");
-    student.setSchool("µÚ¶şÖĞÑ§");
-    student.setClassName("¸ßÈı¶ş°à");
+    student.setSchool("ç¬¬äºŒä¸­å­¦");
+    student.setClassName("é«˜ä¸‰äºŒç­");
     student.setGrade(88.0);
-    // ´òÓ¡Ñ§ÉúĞÅÏ¢
+    // æ‰“å°å­¦ç”Ÿä¿¡æ¯
     student.printInfo();
-    // ĞŞ¸ÄÑ§ÉúĞÅÏ¢
+    // ä¿®æ”¹å­¦ç”Ÿä¿¡æ¯
     student.setGrade(90.0);
-    std::cout << "ĞŞ¸ÄºóµÄÑ§ÉúĞÅÏ¢£º" << std::endl;
+    std::cout << "ä¿®æ”¹åçš„å­¦ç”Ÿä¿¡æ¯ï¼š" << std::endl;
     student.printInfo();
 }
 
 void testAddStudent()
 {
-    // ´´½¨Ñ§Éú¶ÔÏó: ÕÅÈı
-    Student student("ÕÅÈı", 18);
+    // åˆ›å»ºå­¦ç”Ÿå¯¹è±¡: å¼ ä¸‰
+    Student student("å¼ ä¸‰", 18);
     student.setId("20250001");
-    student.setSchool("µÚÒ»ÖĞÑ§");
-    student.setClassName("¸ßÒ»Ò»°à");
+    student.setSchool("ç¬¬ä¸€ä¸­å­¦");
+    student.setClassName("é«˜ä¸€ä¸€ç­");
     student.setGrade(85.0);
 
 
-    // ´´½¨Ñ§Éú¶ÔÏó: ÀîËÄ
-    Student student2("ÀîËÄ", 19);
+    // åˆ›å»ºå­¦ç”Ÿå¯¹è±¡: æå››
+    Student student2("æå››", 19);
     student2.setId("20250002");
-    student2.setSchool("µÚ¶şÖĞÑ§");
-    student2.setClassName("¸ß¶ş¶ş°à");
+    student2.setSchool("ç¬¬äºŒä¸­å­¦");
+    student2.setClassName("é«˜äºŒäºŒç­");
     student2.setGrade(90.0);
 
-    // ´´½¨Ñ§Éú¶ÔÏó: ÍõÎå
-    Student student3("ÍõÎå", 21);
+    // åˆ›å»ºå­¦ç”Ÿå¯¹è±¡: ç‹äº”
+    Student student3("ç‹äº”", 21);
     student3.setId("20250003");
-    student3.setSchool("µÚÈıÖĞÑ§");
-    student3.setClassName("¸ßÈıÈı°à");
+    student3.setSchool("ç¬¬ä¸‰ä¸­å­¦");
+    student3.setClassName("é«˜ä¸‰ä¸‰ç­");
     student3.setGrade(95.0);
 
-    // Ê¹ÓÃStudentManagerÀàÌí¼ÓÑ§ÉúĞÅÏ¢
+    // ä½¿ç”¨StudentManagerç±»æ·»åŠ å­¦ç”Ÿä¿¡æ¯
     StudentManager manager;
     bool res1 = manager.addStudent(student);
     bool res2 = manager.addStudent(student2);
     bool res3 = manager.addStudent(student3);
     if (!res1 || !res2 || !res3)
     {
-        std::cerr << "Ìí¼ÓÑ§ÉúĞÅÏ¢Ê§°Ü£¡" << std::endl;
+        std::cerr << "æ·»åŠ å­¦ç”Ÿä¿¡æ¯å¤±è´¥ï¼" << std::endl;
         return;
 	}
-    manager.printAllStudents(); // ÏÔÊ¾ËùÓĞÑ§ÉúĞÅÏ¢
-    // Ìí¼ÓÑ§ÉúĞÅÏ¢
-    std::cout << "Ìí¼ÓÑ§ÉúĞÅÏ¢³É¹¦£¡" << std::endl;
+    manager.printAllStudents(); // æ˜¾ç¤ºæ‰€æœ‰å­¦ç”Ÿä¿¡æ¯
+    // æ·»åŠ å­¦ç”Ÿä¿¡æ¯
+    std::cout << "æ·»åŠ å­¦ç”Ÿä¿¡æ¯æˆåŠŸï¼" << std::endl;
 }
 
 void testLoadStudents()
 {
     const std::string DATA_FILE = "students.txt";
     StudentManager manager;
-    bool result = manager.loadFromFile(DATA_FILE); // ¼ÓÔØÑ§ÉúĞÅÏ¢
+    bool result = manager.loadFromFile(DATA_FILE); // åŠ è½½å­¦ç”Ÿä¿¡æ¯
     if (!result)
     {
-        std::cerr << "¼ÓÔØÑ§ÉúĞÅÏ¢Ê§°Ü£¡" << std::endl;
+        std::cerr << "åŠ è½½å­¦ç”Ÿä¿¡æ¯å¤±è´¥ï¼" << std::endl;
         return;
     }
-    manager.printAllStudents(); // ÏÔÊ¾ËùÓĞÑ§ÉúĞÅÏ¢
-    std::cout << "¼ÓÔØÑ§ÉúĞÅÏ¢³É¹¦£¡" << std::endl;
+    manager.printAllStudents(); // æ˜¾ç¤ºæ‰€æœ‰å­¦ç”Ÿä¿¡æ¯
+    std::cout << "åŠ è½½å­¦ç”Ÿä¿¡æ¯æˆåŠŸï¼" << std::endl;
 }
 
 void testSaveStudentToFile()
 {
     StudentManager manager;
-    // ´´½¨Ñ§Éú¶ÔÏó
-    Student student("ÕÅ´óÁ¦", 18);
+    // åˆ›å»ºå­¦ç”Ÿå¯¹è±¡
+    Student student("å¼ å¤§åŠ›", 18);
     student.setId("20250003");
-    student.setSchool("µÚÒ»ÖĞÑ§");
-    student.setClassName("¸ßÒ»Ò»°à");
+    student.setSchool("ç¬¬ä¸€ä¸­å­¦");
+    student.setClassName("é«˜ä¸€ä¸€ç­");
     student.setGrade(85.0);
-    // Ìí¼ÓÑ§ÉúĞÅÏ¢
+    // æ·»åŠ å­¦ç”Ÿä¿¡æ¯
     manager.addStudent(student);
-    // ±£´æµ½ÎÄ¼ş
+    // ä¿å­˜åˆ°æ–‡ä»¶
     if (manager.saveToFile(true))
     {
-        std::cout << "Ñ§ÉúĞÅÏ¢±£´æ³É¹¦£¡" << std::endl;
+        std::cout << "å­¦ç”Ÿä¿¡æ¯ä¿å­˜æˆåŠŸï¼" << std::endl;
     }
     else
     {
-        std::cerr << "Ñ§ÉúĞÅÏ¢±£´æÊ§°Ü£¡" << std::endl;
+        std::cerr << "å­¦ç”Ÿä¿¡æ¯ä¿å­˜å¤±è´¥ï¼" << std::endl;
     }
 }
 
@@ -100,16 +100,16 @@ void testFindStudentById()
     StudentManager manager;
     
     std::string id;
-    std::cout << "ÇëÊäÈëÒª²éÕÒµÄÑ§ÉúÑ§ºÅ: ";
+    std::cout << "è¯·è¾“å…¥è¦æŸ¥æ‰¾çš„å­¦ç”Ÿå­¦å·: ";
     std::cin >> id;
     Student* student = manager.findStudentById(id);
     if (student)
     {
-        student->printInfo(); // ´òÓ¡Ñ§ÉúĞÅÏ¢
+        student->printInfo(); // æ‰“å°å­¦ç”Ÿä¿¡æ¯
     }
     else
     {
-        std::cout << "Î´ÕÒµ½Ñ§ºÅÎª " << id << " µÄÑ§ÉúĞÅÏ¢¡£" << std::endl;
+        std::cout << "æœªæ‰¾åˆ°å­¦å·ä¸º " << id << " çš„å­¦ç”Ÿä¿¡æ¯ã€‚" << std::endl;
     }
 }
 
@@ -117,21 +117,21 @@ void testModifyStudent()
 {
     StudentManager manager;
     std::string id;
-    std::cout << "ÇëÊäÈëÒªĞŞ¸ÄµÄÑ§ÉúÑ§ºÅ: ";
+    std::cout << "è¯·è¾“å…¥è¦ä¿®æ”¹çš„å­¦ç”Ÿå­¦å·: ";
     std::cin >> id;
-    bool result = manager.modifyStudent(id); // ĞŞ¸ÄÑ§ÉúĞÅÏ¢
+    bool result = manager.modifyStudent(id); // ä¿®æ”¹å­¦ç”Ÿä¿¡æ¯
     if (result)
     {
-        std::cout << "===== ĞŞ¸ÄºóµÄĞÅÏ¢ =====" << std::endl;
+        std::cout << "===== ä¿®æ”¹åçš„ä¿¡æ¯ =====" << std::endl;
         Student* student = manager.findStudentById(id);
         if (student)
         {
-            student->printInfo(); // ´òÓ¡ĞŞ¸ÄºóµÄÑ§ÉúĞÅÏ¢
+            student->printInfo(); // æ‰“å°ä¿®æ”¹åçš„å­¦ç”Ÿä¿¡æ¯
         }
     }
     else
     {
-        std::cerr << "Ñ§ÉúĞÅÏ¢ĞŞ¸ÄÊ§°Ü£¡" << std::endl;
+        std::cerr << "å­¦ç”Ÿä¿¡æ¯ä¿®æ”¹å¤±è´¥ï¼" << std::endl;
     }
 }
 
@@ -139,16 +139,16 @@ void testDeleteStudent()
 {
     StudentManager manager;
     std::string id;
-    std::cout << "ÇëÊäÈëÒªÉ¾³ıµÄÑ§ÉúÑ§ºÅ: ";
+    std::cout << "è¯·è¾“å…¥è¦åˆ é™¤çš„å­¦ç”Ÿå­¦å·: ";
     std::cin >> id;
-    bool result = manager.deleteStudent(id); // É¾³ıÑ§ÉúĞÅÏ¢
+    bool result = manager.deleteStudent(id); // åˆ é™¤å­¦ç”Ÿä¿¡æ¯
     if (result)
     {
-        std::cout << "Ñ§ÉúĞÅÏ¢É¾³ı³É¹¦£¡" << std::endl;
+        std::cout << "å­¦ç”Ÿä¿¡æ¯åˆ é™¤æˆåŠŸï¼" << std::endl;
     }
     else
     {
-        std::cerr << "Ñ§ÉúĞÅÏ¢É¾³ıÊ§°Ü£¡" << std::endl;
+        std::cerr << "å­¦ç”Ÿä¿¡æ¯åˆ é™¤å¤±è´¥ï¼" << std::endl;
     }
 }
 
@@ -157,17 +157,17 @@ void testModifyStudentScore()
     StudentManager manager;
 
     std::string id;
-    std::cout << "ÇëÊäÈëÒªĞŞ¸Ä³É¼¨µÄÑ§ÉúÑ§ºÅ: ";
+    std::cout << "è¯·è¾“å…¥è¦ä¿®æ”¹æˆç»©çš„å­¦ç”Ÿå­¦å·: ";
     std::cin >> id;
 
-    bool result = manager.modifyGradeByStuId(id); // É¾³ıÑ§ÉúĞÅÏ¢
+    bool result = manager.modifyGradeByStuId(id); // åˆ é™¤å­¦ç”Ÿä¿¡æ¯
     if (result)
     {
-        std::cout << "Ñ§Éú³É¼¨ĞŞ¸Ä³É¹¦£¡" << std::endl;
+        std::cout << "å­¦ç”Ÿæˆç»©ä¿®æ”¹æˆåŠŸï¼" << std::endl;
     }
     else
     {
-        std::cerr << "Ñ§Éú³É¼¨ĞŞ¸ÄÊ§°Ü£¡" << std::endl;
+        std::cerr << "å­¦ç”Ÿæˆç»©ä¿®æ”¹å¤±è´¥ï¼" << std::endl;
     }
 }
 
@@ -175,6 +175,6 @@ void testSortStudents()
 {
     StudentManager manager;
 
-    manager.sortStudentsByGrade(); // ÉıĞò
-    manager.sortStudentsByGrade(false); // ½µĞò
+    manager.sortStudentsByGrade(); // å‡åº
+    manager.sortStudentsByGrade(false); // é™åº
 }

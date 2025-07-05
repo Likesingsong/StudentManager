@@ -2,13 +2,13 @@
 
 #include "student_manager.h"
 
-// ¹¹Ôìº¯Êı
+// æ„é€ å‡½æ•°
 StudentManager::StudentManager()
 {
     loadFromFile(data_file);
 }
 
-// Îö¹¹º¯Êı
+// ææ„å‡½æ•°
 StudentManager::~StudentManager()
 {
     saveToFile();
@@ -22,7 +22,7 @@ void StudentManager::setDataFile(const std::string& filename)
 bool StudentManager::addStudent(const Student& stu)
 {
     bool exists = findStudentById(stu.getId()) != nullptr;
-	if (exists) return false; // Èç¹ûÑ§ºÅÒÑ´æÔÚ£¬·µ»Øfalse
+	if (exists) return false; // å¦‚æœå­¦å·å·²å­˜åœ¨ï¼Œè¿”å›false
     students.push_back(stu);
     return true;
 }
@@ -31,7 +31,7 @@ Student* StudentManager::findStudentById(const std::string& id)
 {
     for (auto& stu : students)
     {
-		if (stu.getId() == id) return &stu; // ·µ»ØÖ¸ÏòÕÒµ½µÄÑ§Éú¶ÔÏóµÄÖ¸Õë
+		if (stu.getId() == id) return &stu; // è¿”å›æŒ‡å‘æ‰¾åˆ°çš„å­¦ç”Ÿå¯¹è±¡çš„æŒ‡é’ˆ
         
     }
     return nullptr;
@@ -48,15 +48,15 @@ bool StudentManager::modifyStudent(const std::string& id)
         std::string newClassName;
         int newAge;
         double newGrade;
-        std::cout << "ÇëÊäÈëĞÂµÄĞÕÃû: (Ô­Îª" << student->getName() << ")" << std::endl;
+        std::cout << "è¯·è¾“å…¥æ–°çš„å§“å: (åŸä¸º" << student->getName() << ")" << std::endl;
         std::cin >> newName;
-        std::cout << "ÇëÊäÈëĞÂµÄÄêÁä: (Ô­Îª" << student->getAge() << ")" << std::endl;
+        std::cout << "è¯·è¾“å…¥æ–°çš„å¹´é¾„: (åŸä¸º" << student->getAge() << ")" << std::endl;
         std::cin >> newAge;
-        std::cout << "ÇëÊäÈëĞÂµÄÑ§Ğ£: (Ô­Îª" << student->getSchool() << ")" << std::endl;
+        std::cout << "è¯·è¾“å…¥æ–°çš„å­¦æ ¡: (åŸä¸º" << student->getSchool() << ")" << std::endl;
         std::cin >> newSchool;
-        std::cout << "ÇëÊäÈëĞÂµÄ°à¼¶: (Ô­Îª" << student->getClassName() << ")" << std::endl;
+        std::cout << "è¯·è¾“å…¥æ–°çš„ç­çº§: (åŸä¸º" << student->getClassName() << ")" << std::endl;
         std::cin >> newClassName;
-        std::cout << "ÇëÊäÈëĞÂµÄ³É¼¨: (Ô­Îª" << student->getGrade() << ")" << std::endl;
+        std::cout << "è¯·è¾“å…¥æ–°çš„æˆç»©: (åŸä¸º" << student->getGrade() << ")" << std::endl;
         std::cin >> newGrade;
         student->setName(newName);
         student->setAge(newAge);
@@ -75,7 +75,7 @@ bool StudentManager::modifyGradeByStuId(const std::string& id)
     if (student)
     {
 		double newGrade;
-        std::cout << "ÇëÊäÈëĞÂµÄ³É¼¨: (Ô­Îª" << student->getGrade() << ")" << std::endl;
+        std::cout << "è¯·è¾“å…¥æ–°çš„æˆç»©: (åŸä¸º" << student->getGrade() << ")" << std::endl;
         std::cin >> newGrade;
         student->setGrade(newGrade);
         return true;
@@ -140,7 +140,7 @@ bool StudentManager::saveToFile(bool appendMode) const
     {
         return false;
     }
-	std::ofstream fout(data_file, appendMode ? std::ios::app : std::ios::out); // Ê¹ÓÃappendMode²ÎÊıÀ´¾ö¶¨ÊÇ·ñ×·¼ÓĞ´Èë
+	std::ofstream fout(data_file, appendMode ? std::ios::app : std::ios::out); // ä½¿ç”¨appendModeå‚æ•°æ¥å†³å®šæ˜¯å¦è¿½åŠ å†™å…¥
     if (!fout.is_open()) return false;
     for (const auto& stu : students)
     {
@@ -157,19 +157,19 @@ bool StudentManager::saveToFile(bool appendMode) const
 
 bool StudentManager::sortStudentsByGrade(bool ascending)
 {
-	if (students.empty()) return false; // Èç¹ûÑ§ÉúÁĞ±íÎª¿Õ£¬Ö±½Ó·µ»Øfalse
-	// Ê¹ÓÃÃ°ÅİÅÅĞòËã·¨¶ÔÑ§Éú°´³É¼¨½øĞĞÅÅĞò
-    // Õâ¶Î´úÂëÎ»ÓÚÒ»¸öË«ÖØÑ­»·ÖĞ£¬ÊµÏÖÁËÃ°ÅİÅÅĞòËã·¨£¬ÓÃÓÚ¶Ôstudents£¨Ñ§Éú¶ÔÏóµÄvector£©°´³É¼¨½øĞĞÅÅĞò¡£
+	if (students.empty()) return false; // å¦‚æœå­¦ç”Ÿåˆ—è¡¨ä¸ºç©ºï¼Œç›´æ¥è¿”å›false
+	// ä½¿ç”¨å†’æ³¡æ’åºç®—æ³•å¯¹å­¦ç”ŸæŒ‰æˆç»©è¿›è¡Œæ’åº
+    // è¿™æ®µä»£ç ä½äºä¸€ä¸ªåŒé‡å¾ªç¯ä¸­ï¼Œå®ç°äº†å†’æ³¡æ’åºç®—æ³•ï¼Œç”¨äºå¯¹studentsï¼ˆå­¦ç”Ÿå¯¹è±¡çš„vectorï¼‰æŒ‰æˆç»©è¿›è¡Œæ’åºã€‚
     for (size_t i = 0; i < students.size() - 1; ++i)
     {
         for (size_t j = 0; j < students.size() - i - 1; ++j)
         {
-            // ascendingÊÇÒ»¸ö²¼¶û±äÁ¿£¬±íÊ¾ÅÅĞò·½Ê½£ºtrueÎªÉıĞò£¬falseÎª½µĞò¡£
-            // students[j].getGrade()»ñÈ¡µÚj¸öÑ§ÉúµÄ³É¼¨¡£
-            if ((ascending && students[j].getGrade() > students[j + 1].getGrade()) ||   // Èç¹ûÊÇÉıĞò£¨ascending == true£©£¬µ±Ç°Ò»¸öÑ§Éú³É¼¨´óÓÚºóÒ»¸öÑ§Éú³É¼¨Ê±£¬½»»»Á½ÕßÎ»ÖÃ¡£
-                (!ascending && students[j].getGrade() < students[j + 1].getGrade()))    // Èç¹ûÊÇ½µĞò£¨ascending == false£©£¬µ±Ç°Ò»¸öÑ§Éú³É¼¨Ğ¡ÓÚºóÒ»¸öÑ§Éú³É¼¨Ê±£¬½»»»Á½ÕßÎ»ÖÃ¡£
+            // ascendingæ˜¯ä¸€ä¸ªå¸ƒå°”å˜é‡ï¼Œè¡¨ç¤ºæ’åºæ–¹å¼ï¼štrueä¸ºå‡åºï¼Œfalseä¸ºé™åºã€‚
+            // students[j].getGrade()è·å–ç¬¬jä¸ªå­¦ç”Ÿçš„æˆç»©ã€‚
+            if ((ascending && students[j].getGrade() > students[j + 1].getGrade()) ||   // å¦‚æœæ˜¯å‡åºï¼ˆascending == trueï¼‰ï¼Œå½“å‰ä¸€ä¸ªå­¦ç”Ÿæˆç»©å¤§äºåä¸€ä¸ªå­¦ç”Ÿæˆç»©æ—¶ï¼Œäº¤æ¢ä¸¤è€…ä½ç½®ã€‚
+                (!ascending && students[j].getGrade() < students[j + 1].getGrade()))    // å¦‚æœæ˜¯é™åºï¼ˆascending == falseï¼‰ï¼Œå½“å‰ä¸€ä¸ªå­¦ç”Ÿæˆç»©å°äºåä¸€ä¸ªå­¦ç”Ÿæˆç»©æ—¶ï¼Œäº¤æ¢ä¸¤è€…ä½ç½®ã€‚
             {
-                // std::swapÓÃÓÚ½»»»vectorÖĞÁ½¸öÑ§Éú¶ÔÏóµÄÎ»ÖÃ¡£
+                // std::swapç”¨äºäº¤æ¢vectorä¸­ä¸¤ä¸ªå­¦ç”Ÿå¯¹è±¡çš„ä½ç½®ã€‚
                 std::swap(students[j], students[j + 1]);
             }
         }
