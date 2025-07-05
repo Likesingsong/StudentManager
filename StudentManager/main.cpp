@@ -139,7 +139,7 @@ void deleteStudentById(StudentManager& manager)
 	std::string id;
 	std::cout << "输入要删除的学生学号: ";
 	std::cin >> id;
-	bool result = manager.modifyStudent(id);
+	bool result = manager.deleteStudent(id);
 	if (result)
 	{
 		std::cout << "删除成功！\n\n";
@@ -158,7 +158,7 @@ void modifyStudentGradeById(StudentManager& manager)
 	bool result = manager.modifyGradeByStuId(id);
 	if (result)
 	{
-		std::cout << "学生成绩修改成功！\n\n";
+		std::cout << "未找到该学生！\n\n";
 	}
 	else
 	{
