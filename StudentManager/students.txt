@@ -1,5 +1,5 @@
-20250001 Zhugekongming 18 No.1_HighSchool Senior_1_Class_1 60
-20250003 ZhangDali 18 No.1_HighSchool Senior_1_Class_1 95
-20250005 ShenJing 18 No.1_HighSchool Senior_1_Class_3 96
-20250002 LiYunfeng 19 No.2_HighSchool Senior_2_Class_2 99
-20250004 BaiXiaoyu 20 No.2_HighSchool Senior_1_Class_1 100
+20250001 Zhugekongming 18 No.1_HighSchool Grade1_Class1 60
+20250003 ZhangDali 18 No.1_HighSchool Grade1_Class2 95
+20250005 ShenJing 18 No.1_HighSchool Grade1_Class3 96
+20250002 LiYunfeng 19 No.2_HighSchool Grade2_Class1 99
+20250004 BaiXiaoyu 20 No.2_HighSchool Grade2_Class2 100
