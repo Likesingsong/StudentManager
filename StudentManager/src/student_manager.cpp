@@ -1,5 +1,6 @@
 // student_manager.cpp
 
+#include <algorithm>
 #include "student_manager.h"
 
 // Constructor
@@ -21,20 +22,24 @@ void StudentManager::setDataFile(const std::string& filename)
 
 bool StudentManager::addStudent(const Student& stu)
 {
-    bool exists = findStudentById(stu.getId()) != nullptr;
-    if (exists) return false; // Return false if student ID already exists
+    bool exists = findStudentById(stu.getId()) != nullptr;  // Check if student ID already exists
+    if (exists) return false;                               // Return false if student ID already exists
     students.push_back(stu);
     return true;
 }
 
 Student* StudentManager::findStudentById(const std::string& id)
 {
-    for (auto& stu : students)
+Node<Student>* current = students.get_head();           // Get the head of the linked list
+    while (current)
     {
-        if (stu.getId() == id) return &stu; // Return pointer to found student object
-        
+        if (current->get_data()->getId() == id)         // Check if the current student's ID matches
+        {
+            return current->get_data();                 // Return the student object if found
+        }
+        current = current->get_next();                  // Move to the next node
     }
-    return nullptr;
+    return nullptr;                                     // Return nullptr if no student with the given ID is found
 }
 
 bool StudentManager::modifyStudent(const std::string& id)
@@ -85,24 +90,31 @@ bool StudentManager::modifyGradeByStuId(const std::string& id)
 
 bool StudentManager::deleteStudent(const std::string& id)
 {
-    for (auto it = students.begin(); it != students.end(); ++it)
-    {
-        if (it->getId() == id)
-        {
-            students.erase(it);
-            return true;
-        }
-    }
-    return false;
+    Student* student = findStudentById(id);
+    if (!student) return false;     // Return false if student not found
+    students.remove(*student);      // Remove the student from the list
+    return true;                    // Return true if deletion was successful
 }
 
-void StudentManager::printAllStudents() const
+void StudentManager::printAllStudents()
 {
-    for (const auto& stu : students)
+    if (students.empty())
     {
-        stu.printInfo();
-        std::cout << "------------------------\n\n";
+        std::cout << "No students found." << std::endl;
+        return;
     }
+    std::cout << "List of all students:\n";
+    std::cout << "------------------------\n";
+    // Iterate through the linked list of students and print each student's information
+    Node<Student>* current = students.get_head();
+    while (current)
+    {
+        current->get_data()->printInfo();   // Call printInfo method of Student class to print student details
+        std::cout << "------------------------\n";
+        current = current->get_next();      // Move to the next node in the linked list
+    }
+    std::cout << "Total number of students: " << students.get_size() << std::endl; // Print the total number of students
+    std::cout << "------------------------\n\n";
 }
 
 bool StudentManager::loadFromFile(const std::string& filename)
@@ -126,14 +138,14 @@ bool StudentManager::loadFromFile(const std::string& filename)
     double grade;
     while (fin >> id >> name >> age >> school >> className >> grade)
     {
-        students.emplace_back(id, name, age, school, className, grade);
+        students.push_back(Student(id, name, age, school, className, grade));
     }
 
     fin.close();
     return true;
 }
 
-bool StudentManager::saveToFile(bool appendMode) const
+bool StudentManager::saveToFile(bool appendMode)
 {
     std::ifstream fileCheck(data_file);
     if (!fileCheck.is_open())
@@ -142,14 +154,22 @@ bool StudentManager::saveToFile(bool appendMode) const
     }
     std::ofstream fout(data_file, appendMode ? std::ios::app : std::ios::out); // Use appendMode to decide whether to append
     if (!fout.is_open()) return false;
-    for (const auto& stu : students)
+    Node<Student>* current = students.get_head();
+    if (current == nullptr) // Check if the list is empty
     {
-        fout << stu.getId() << " "
-            << stu.getName() << " "
-            << stu.getAge() << " "
-            << stu.getSchool() << " "
-            << stu.getClassName() << " "
-            << stu.getGrade() << std::endl;
+        fout.close();
+        return true;        // Return true even if no students are present
+    }
+    // Write each student's information to the file
+    while (current)
+    {
+        fout << current->get_data()->getId() << " "
+            << current->get_data()->getName() << " "
+            << current->get_data()->getAge() << " "
+            << current->get_data()->getSchool() << " "
+            << current->get_data()->getClassName() << " "
+            << current->get_data()->getGrade() << std::endl;
+        current = current->get_next(); // Move to the next node
     }
     fout.close();
     return true;
@@ -158,21 +178,27 @@ bool StudentManager::saveToFile(bool appendMode) const
 bool StudentManager::sortStudentsByGrade(bool ascending)
 {
     if (students.empty()) return false; // Return false if student list is empty
+    
+    bool swapped;                       // Flag to check if a swap was made in the current pass
     // Use bubble sort algorithm to sort students by grade
-    // This code is in a double loop, implementing bubble sort to sort the students vector by grade.
-    for (size_t i = 0; i < students.size() - 1; ++i)
+    // Repeat the sorting process until no swaps are made in a complete pass
+    do
     {
-        for (size_t j = 0; j < students.size() - i - 1; ++j)
+        swapped = false;
+        Node<Student>* current = students.get_head();
+        while (current && current->get_next())
         {
-            // ascending is a boolean variable indicating sort order: true for ascending, false for descending.
-            // students[j].getGrade() gets the grade of the j-th student.
-            if ((ascending && students[j].getGrade() > students[j + 1].getGrade()) ||   // If ascending, swap if current grade is greater than next.
-                (!ascending && students[j].getGrade() < students[j + 1].getGrade()))    // If descending, swap if current grade is less than next.
+            Node<Student>* nextNode = current->get_next();
+            if ((ascending && current->get_data()->getGrade() > nextNode->get_data()->getGrade()) ||
+                (!ascending && current->get_data()->getGrade() < nextNode->get_data()->getGrade()))
             {
-                // std::swap is used to swap two student objects in the vector.
-                std::swap(students[j], students[j + 1]);
+                // Swap the data of the two nodes
+                std::swap(*(current->get_data()), *(nextNode->get_data()));
+                // Set the swapped flag to true
+                swapped = true;
             }
+            current = nextNode; // Move to the next node
         }
-    }
+    } while (swapped); // Repeat until no swaps are made
     return true;
 }

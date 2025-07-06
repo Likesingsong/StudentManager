@@ -4,6 +4,7 @@
 #include <vector>
 #include <fstream>
 #include "Student.h"
+#include "data_structure.h"
 
 void printStudentMenu();
 
@@ -11,7 +12,7 @@ void printStudentMenu();
 class StudentManager
 {
 private:
-    std::vector<Student> students;
+    DoublyLinkedList<Student> students; // List to store student objects
     std::string data_file = "../students.txt";
 public:
     StudentManager();
@@ -30,11 +31,11 @@ public:
 
     bool deleteStudent(const std::string& id);
 
-    void printAllStudents() const;
+    void printAllStudents();
 
     bool loadFromFile(const std::string& filename);
 
-    bool saveToFile(bool appendMode = false) const;
+    bool saveToFile(bool appendMode = false);
 
 	bool sortStudentsByGrade(bool ascending = true);
 };
